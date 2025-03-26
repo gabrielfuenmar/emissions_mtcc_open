@@ -108,8 +108,8 @@ print(texto_limpio)  # Salida esperada: "bulkcarrier"
 │       │
 │
 ├── CONTRIBUTING.md
-├── MANIFEST.in
 ├── README.md
+├── LICENSE
 └── setup.py
 
 ```
@@ -143,6 +143,6 @@ Conjunto de archivos geoespaciales que definen límites marítimos, incluyendo z
 
 ## Licencia
 
-Este proyecto está licenciado bajo [la Licencia MIT](./LICENSE).
+Este proyecto está licenciado bajo [Licencia MIT](./LICENSE).
 
 
