@@ -1,0 +1,285 @@
+StandardVesselType,ShiptypeLevel5
+Bulk carrier,Bulk/Oil/Chemical Carrier (CLEANBU)
+Bulk carrier,Bulk/Sulphuric Acid Carrier
+Bulk carrier,Bulk/Caustic Soda Carrier (CABU)
+Bulk carrier,"Bulk Cement Carrier, Inland Waterways"
+Bulk carrier,Urea Carrier
+Bulk carrier,Refined Sugar Carrier
+Bulk carrier,Wood Chips Carrier
+Bulk carrier,Powder Carrier
+Bulk carrier,Limestone Carrier
+Bulk carrier,Bulk/Oil Carrier (OBO)
+Bulk carrier,Bulk Carrier (with Vehicle Decks)
+Bulk carrier,"Bulk Carrier, Self-discharging, Laker"
+Bulk carrier,"Bulk Carrier, Self-discharging"
+Bulk carrier,Cement Carrier
+Bulk carrier,Ore/Oil Carrier
+Bulk carrier,Bulk Carrier
+Bulk carrier,Ore Carrier
+Bulk carrier,"Bulk Carrier, Laker Only"
+Chemical tanker,Latex Tanker
+Chemical tanker,"Edible Oil Tanker, Inland Waterways"
+Chemical tanker,"Vegetable Oil Tanker, Inland Waterways"
+Chemical tanker,"Chemical Tanker, Inland Waterways"
+Chemical tanker,"Chemical/Products Tanker, Inland Waterways"
+Chemical tanker,Edible Oil Tanker
+Chemical tanker,Beer Tanker
+Chemical tanker,Molten Sulphur Tanker
+Chemical tanker,Vegetable Oil Tanker
+Chemical tanker,Wine Tanker
+Chemical tanker,Chemical Tanker
+Chemical tanker,Chemical/Products Tanker
+Container,"Container Ship (Fully Cellular), Inland Waterways"
+Container,Container/Ro-Ro Cargo Ship
+Container,Container Ship (Fully Cellular/Ro-Ro Facility)
+Container,Container Ship (Fully Cellular)
+General cargo,"General Cargo Ship, Self-discharging"
+General cargo,Open Hatch Cargo Ship
+General cargo,Palletised Cargo Ship
+General cargo,General Cargo Ship (with Ro-Ro facility)
+General cargo,Deck Cargo Ship
+General cargo,General Cargo/Tanker
+General cargo,"General Cargo/Passenger Ship, Inland Waterways"
+General cargo,"General Cargo, Inland Waterways"
+General cargo,General Cargo Ship
+General cargo,General Cargo/Passenger Ship
+Liquified gas tanker,CNG Tanker
+Liquified gas tanker,Combination Gas Tanker (LNG/LPG)
+Liquified gas tanker,"LPG Tanker, Inland Waterways"
+Liquified gas tanker,CO2 Tanker
+Liquified gas tanker,LNG Tanker
+Liquified gas tanker,LPG Tanker
+Liquified gas tanker,LPG/Chemical Tanker
+Oil tanker,Coal/Oil Mixture Tanker
+Oil tanker,Shuttle Tanker
+Oil tanker,Asphalt/Bitumen Tanker
+Oil tanker,"Oil Tanker, Inland Waterways"
+Oil tanker,Crude Oil Tanker
+Oil tanker,Crude/Oil Products Tanker
+Oil tanker,Products Tanker
+Other liquids tankers,Caprolactam Tanker
+Other liquids tankers,Alcohol Tanker
+Other liquids tankers,"Water Tanker, Inland Waterways"
+Other liquids tankers,"Fruit Juice Carrier, Refrigerated"
+Other liquids tankers,Molasses Tanker
+Other liquids tankers,Glue Tanker
+Other liquids tankers,Tanker (unspecified)
+Ferry-pax only,"Passenger Ship, Inland Waterways"
+Ferry-pax only,Passenger Ship
+Cruise,"Cruise Ship, Inland Waterways"
+Cruise,Passenger/Cruise
+Ferry-RoPax,Air Cushion Vehicle Passenger
+Ferry-RoPax,"Passenger/Ro-Ro Ship (Vehicles/Train), Inland"
+Ferry-RoPax,Passenger/Landing Craft
+Ferry-RoPax,"Passenger/Ro-Ro Ship (Vehicles), Inland Waterways"
+Ferry-RoPax,Passenger/Ro-Ro Ship (Vehicles/Rail)
+Ferry-RoPax,Passenger/Ro-Ro Ship (Vehicles)
+Ferry-RoPax,Air Cushion Vehicle Passenger/Ro-Ro (Vehicles)
+Refrigerated bulk,Refrigerated Cargo Ship 
+Refrigerated bulk,Refrigerated Cargo Ship
+Ro-Ro,"Ro-Ro Cargo Ship, Inland Waterways"
+Ro-Ro,Rail Vehicles Carrier
+Ro-Ro,Ro-Ro Cargo Ship
+Ro-Ro,Landing Craft
+Vehicle,Vehicles Carrier
+Yacht,Yacht
+Yacht,Yacht (Sailing)
+Service-tug,Tug
+Service-tug,Pusher Tug
+Service-tug,"Towing/Pushing, Inland Waterways"
+Miscellaneous-fishing,"Fishing, Inland Waterways"
+Miscellaneous-fishing,Pulp Carrier
+Miscellaneous-fishing,Fish Farm Support Vessel
+Miscellaneous-fishing,Fish Factory Ship
+Miscellaneous-fishing,Fish Carrier
+Miscellaneous-fishing,Fishing Vessel
+Miscellaneous-fishing,Fishery Support Vessel
+Offshore,Pipe Layer
+Offshore,Pipe Layer Crane Vessel
+Offshore,Diving Support Vessel
+Offshore,Pipe Carrier
+Offshore,Crew/Supply Vessel
+Offshore,"Accommodation Platform, semi submersible"
+Offshore,"Offshore Construction Vessel, jack up"
+Offshore,"Maintenance Platform, semi Submersible"
+Offshore,"FSO, Gas"
+Offshore,Well Stimulation Vessel
+Offshore,"FSO, Oil"
+Offshore,"FPSO, OilGas Processing Vessel"
+Offshore,"Supply Platform, jack up"
+Offshore,Anchor Handling Vessel
+Offshore,Offshore Tug/Supply Ship
+Offshore,Accommodation Ship
+Offshore,Platform Supply Ship
+Offshore,Offshore Support Vessel
+Offshore,Accommodation Vessel Stationary
+Offshore,"Accommodation Vessel, Stationary"
+Offshore,Gas Processing Vessel
+Offshore,Anchor Handling Tug Supply
+Offshore,"FPSO, Oil"
+Service-other,Bunkering Tanker (LNG/Oil)
+Service-other,Bunkering Tanker (LNG)
+Service-other,Mooring Vessel
+Service-other,Tank Cleaning Vessel
+Service-other,Waste Disposal Vessel
+Service-other,Water Tanker
+Service-other,Crew Boat
+Service-other,Icebreaker
+Service-other,Search & Rescue Vessel
+Service-other,Pilot Vessel
+Service-other,Salvage Ship
+Service-other,Bunkering Tanker (Oil)
+Service-other,Work/Repair Vessel
+Miscellaneous-other,"Products Tank Barge, non propelled"
+Miscellaneous-other,"Yacht Carrier, semi submersible"
+Miscellaneous-other,Wing In Ground Effect Vessel
+Miscellaneous-other,Passenger/Container Ship
+Miscellaneous-other,"Air Cushion Vehicle, work vessel"
+Miscellaneous-other,Pumping Platform
+Miscellaneous-other,Rocket Launch Support Ship
+Miscellaneous-other,"Production Platform, jack up"
+Miscellaneous-other,Bucket Wheel Suction Dredger
+Miscellaneous-other,"Crude Oil Tank Barge, non propelled"
+Miscellaneous-other,Shopping Complex
+Miscellaneous-other,"Accommodation Platform, jack up"
+Miscellaneous-other,"Desalination Pontoon, non propelled"
+Miscellaneous-other,"Research, Inland Waterways"
+Miscellaneous-other,Nuclear Fuel Carrier (with Ro-Ro facility)
+Miscellaneous-other,Power Station Vessel
+Miscellaneous-other,"Drilling Rig, jack up"
+Miscellaneous-other,"Chemical Tank Barge, non propelled"
+Miscellaneous-other,Submersible
+Miscellaneous-other,Log Tipping Ship
+Miscellaneous-other,Mooring Buoy
+Miscellaneous-other,Underwater System
+Miscellaneous-other,Weapons Trials Vessel
+Miscellaneous-other,Trenching Support Vessel
+Miscellaneous-other,"Diving Support Platform, semi submersible"
+Miscellaneous-other,Kelp Dredger
+Miscellaneous-other,"Crane Platform, jack up"
+Miscellaneous-other,Car Park
+Miscellaneous-other,Dock Gate
+Miscellaneous-other,"Jacket Launching Pontoon, semi submersible"
+Miscellaneous-other,"Deck Cargo Pontoon, semi submersible"
+Miscellaneous-other,"Pipe layer Platform, semi submersible"
+Miscellaneous-other,"Bitumen Tank Barge, non propelled"
+Miscellaneous-other,Linkspan/Jetty
+Miscellaneous-other,Production Testing Vessel
+Miscellaneous-other,"Heavy Load Carrier, semi submersible"
+Miscellaneous-other,Backhoe Dredger
+Miscellaneous-other,Pipe Burying Vessel
+Miscellaneous-other,Nuclear Fuel Carrier
+Miscellaneous-other,"Production Platform, semi submersible"
+Miscellaneous-other,Grab Dredger Pontoon
+Miscellaneous-other,"Chemical/Products Tank Barge, non propelled"
+Miscellaneous-other,Barge Carrier
+Miscellaneous-other,"Drilling Rig, semi submersible"
+Miscellaneous-other,"Power Station Pontoon, non propelled"
+Miscellaneous-other,"Water Tank Barge, non propelled"
+Miscellaneous-other,"Cement Storage Barge, non propelled"
+Miscellaneous-other,"LPG Tank Barge, non propelled"
+Miscellaneous-other,Pearl Shells Carrier
+Miscellaneous-other,Heavy Load Carrier
+Miscellaneous-other,Mining Vessel
+Miscellaneous-other,Pile Driving Vessel
+Miscellaneous-other,"Work/Maintenance Pontoon, non propelled"
+Miscellaneous-other,Naval Small Craft
+Miscellaneous-other,Stone Carrier
+Miscellaneous-other,Water Injection Dredger
+Miscellaneous-other,Bulk Cement Storage Ship
+Miscellaneous-other,Trans Shipment Vessel
+Miscellaneous-other,"Steam Supply Pontoon, non propelled"
+Miscellaneous-other,"Grain Elevating Pontoon, non propelled"
+Miscellaneous-other,Lightship
+Miscellaneous-other,Articulated Pusher Tug
+Miscellaneous-other,Suction Dredger Pontoon
+Miscellaneous-other,Mission Ship
+Miscellaneous-other,"Dredging Pontoon, unknown dredging type"
+Miscellaneous-other,Theatre Vessel
+Miscellaneous-other,"Dredging, Inland Waterways"
+Miscellaneous-other,Bucket Hopper Dredger
+Miscellaneous-other,Effluent carrier
+Miscellaneous-other,"Hopper Barge, non propelled"
+Miscellaneous-other,Trailing Suction Hopper Dredger
+Miscellaneous-other,Bucket Dredger Pontoon
+Miscellaneous-other,Icebreaker/Research
+Miscellaneous-other,Suction Hopper Dredger
+Miscellaneous-other,"Bulk Aggregates Barge, non propelled"
+Miscellaneous-other,Sheerlegs Pontoon
+Miscellaneous-other,Troopship
+Miscellaneous-other,Sailing Vessel
+Miscellaneous-other,Seal Catcher
+Miscellaneous-other,Whale Catcher
+Miscellaneous-other,"Fish Storage Barge, non propelled"
+Miscellaneous-other,Pollution Control Vessel
+Miscellaneous-other,"Crane Vessel, non propelled"
+Miscellaneous-other,"Hopper, Motor"
+Miscellaneous-other,Drilling Ship
+Miscellaneous-other,Bulk Dry Storage Ship
+Miscellaneous-other,Dredger (unspecified)
+Miscellaneous-other,Grab Hopper Dredger
+Miscellaneous-other,"Bulk Cement Barge, non propelled"
+Miscellaneous-other,Cutter Suction Dredger
+Miscellaneous-other,Cable Layer
+Miscellaneous-other,"Covered Bulk Cargo Barge, non propelled"
+Miscellaneous-other,Radio Station Vessel
+Miscellaneous-other,Buoy & Lighthouse Tender
+Miscellaneous-other,Hopper/Dredger (unspecified)
+Miscellaneous-other,Fishery Research Vessel
+Miscellaneous-other,Vessel (function unknown)
+Miscellaneous-other,Aggregates Carrier
+Miscellaneous-other,Incinerator
+Miscellaneous-other,Livestock Carrier
+Miscellaneous-other,Suction Dredger
+Miscellaneous-other,Standby Safety Vessel
+Miscellaneous-other,"General Cargo Barge, non propelled"
+Miscellaneous-other,Exhibition Vessel
+Miscellaneous-other,Bucket Ladder Dredger
+Miscellaneous-other,Grab Dredger
+Miscellaneous-other,Houseboat
+Miscellaneous-other,Supply Tender
+Miscellaneous-other,"Training Ship, Stationary"
+Miscellaneous-other,"Restaurant Vessel, Stationary"
+Miscellaneous-other,Air Cushion Vehicle Patrol Vessel
+Miscellaneous-other,Minelayer
+Miscellaneous-other,Buoy Tender
+Miscellaneous-other,Submarine Salvage Vessel
+Miscellaneous-other,Munitions Carrier
+Miscellaneous-other,Logistics Vessel (Naval Ro-Ro Cargo)
+Miscellaneous-other,Cruiser
+Miscellaneous-other,"Attack Vessel, Naval"
+Miscellaneous-other,Torpedo Recovery Vessel
+Miscellaneous-other,Infantry Landing Craft
+Miscellaneous-other,Aircraft Carrier
+Miscellaneous-other,Minesweeper
+Miscellaneous-other,Helicopter Carrier
+Miscellaneous-other,Frigate
+Miscellaneous-other,Destroyer
+Miscellaneous-other,Minehunter
+Miscellaneous-other,Replenishment Dry Cargo Vessel
+Miscellaneous-other,Command Vessel
+Miscellaneous-other,Submarine
+Miscellaneous-other,Landing Ship (Dock Type)
+Miscellaneous-other,Replenishment Tanker
+Miscellaneous-other,Corvette
+Miscellaneous-other,Cable Repair Ship
+Miscellaneous-other,Training Ship
+Miscellaneous-other,Patrol Vessel
+Miscellaneous-other,Tank Landing Craft
+Miscellaneous-other,Utility Vessel
+Miscellaneous-other,Floating Dock
+Miscellaneous-other,Mechanical Lift Dock
+Miscellaneous-other,Fire Fighting Vessel
+Miscellaneous-other,Hospital Vessel
+Miscellaneous-other,"Museum, Stationary"
+Miscellaneous-other,Research Survey Vessel
+Miscellaneous-other,"Other Activities, Inland Waterways"
+Miscellaneous-other,"Diving Vessel, Naval Auxiliary"
+Miscellaneous-other,"Unknown Function, Naval/Naval Auxiliary"
+Miscellaneous-other,Crane Vessel
+Miscellaneous-other,Fishery Patrol Vessel
+Miscellaneous-other,Sail Training Ship
+Miscellaneous-other,"Deck Cargo Pontoon, non propelled"
+Miscellaneous-other,Pontoon (Function Unknown)
+Miscellaneous-other,"Trans Shipment Barge, non propelled"
+Miscellaneous-other,Lighthouse Tender

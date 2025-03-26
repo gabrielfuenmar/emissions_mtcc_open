@@ -1,0 +1,71 @@
+StandardVesselType,imo4bin,mindiff,maxdiff
+Bulk carrier,1,0,9999
+Bulk carrier,2,10000,34999
+Bulk carrier,3,35000,59999
+Bulk carrier,4,60000,99999
+Bulk carrier,5,100000,199999
+Bulk carrier,6,200000,1000000000
+Chemical tanker,1,0,4999
+Chemical tanker,2,5000,9999
+Chemical tanker,3,10000,19999
+Chemical tanker,4,20000,39999
+Chemical tanker,5,40000,1000000000
+Container,1,0,999
+Container,2,1000,1999
+Container,3,2000,2999
+Container,4,3000,4999
+Container,5,5000,7999
+Container,6,8000,11999
+Container,7,12000,14499
+Container,8,14500,19999
+Container,9,20000,1000000000
+General cargo,1,0,4999
+General cargo,2,5000,9999
+General cargo,3,10000,19999
+General cargo,4,20000,1000000000
+Liquified gas tanker,1,0,49999
+Liquified gas tanker,2,50000,99999
+Liquified gas tanker,3,100000,199999
+Liquified gas tanker,4,200000,1000000000
+Oil tanker,1,0,4999
+Oil tanker,2,5000,9999
+Oil tanker,3,10000,19999
+Oil tanker,4,20000,59999
+Oil tanker,5,60000,79999
+Oil tanker,6,80000,119999
+Oil tanker,7,120000,199999
+Oil tanker,8,200000,1000000000
+Other liquids tankers,1,0,999
+Other liquids tankers,2,1000,1000000000
+Ferry-pax only,1,0,299
+Ferry-pax only,2,300,999
+Ferry-pax only,3,1000,1999
+Ferry-pax only,4,2000,1000000000
+Cruise,1,0,1999
+Cruise,2,2000,9999
+Cruise,3,10000,59999
+Cruise,4,60000,99999
+Cruise,5,100000,149999
+Cruise,6,150000,1000000000
+Ferry-RoPax,1,0,1999
+Ferry-RoPax,2,2000,4999
+Ferry-RoPax,3,5000,9999
+Ferry-RoPax,4,10000,19999
+Ferry-RoPax,5,20000,1000000000
+Refrigerated bulk,1,0,1999
+Refrigerated bulk,2,2000,5999
+Refrigerated bulk,3,6000,9999
+Refrigerated bulk,4,10000,1000000000
+Ro-Ro,1,0,4999
+Ro-Ro,2,5000,9999
+Ro-Ro,3,10000,14999
+Ro-Ro,4,15000,1000000000
+Vehicle,1,0,29999
+Vehicle,2,30000,49999
+Vehicle,3,50000,1000000000
+Yacht,1,0,1000000000
+Service-tug,1,0,1000000000
+Miscellaneous-fishing,1,0,1000000000
+Offshore,1,0,1000000000
+Service-other,1,0,1000000000
+Miscellaneous-other,1,0,1000000000

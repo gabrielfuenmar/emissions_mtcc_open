@@ -1,0 +1,37 @@
+meType,fuel,ef_ch4
+SSD,HFO,0.01
+SSD,LSHFO_1%,0.01
+SSD,MDO,0.01
+SSD,Methanol,0.001
+MSD,HFO,0.01
+MSD,LSHFO_1%,0.01
+MSD,MDO,0.01
+MSD,Methanol,0.001
+HSD,HFO,0.01
+HSD,LSHFO_1%,0.01
+HSD,MDO,0.01
+HSD,Methanol,0.0
+LNG-Otto-SS,LNG,2.5
+LNG-Otto-MS,LNG,5.5
+LNG-Diesel,LNG,0.2
+LBSI,LNG,4.1
+AE,HFO,0.01
+AE,LSHFO_1%,0.01
+AE,MDO,0.01
+AE,Methanol,0.0
+AE,LNG,5.5
+AB,HFO,0.002
+AB,LSHFO_1%,0.002
+AB,MDO,0.002
+AB,Methanol,0.0
+AB,LNG,0.04
+Gas turbine,HFO,0.002
+Gas turbine,LSHFO_1%,0.002
+Gas turbine,MDO,0.002
+Gas turbine,Methanol,0.0
+Gas turbine,LNG,0.06
+Steam turbine,HFO,0.002
+Steam turbine,LSHFO_1%,0.002
+Steam turbine,MDO,0.002
+Steam turbine,Methanol,0.0
+Steam turbine,LNG,0.04
