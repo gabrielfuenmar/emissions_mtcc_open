@@ -1,313 +1,270 @@
-# Interpolation Module (`_interpolation.py`)
+# **Módulo de Interpolación (`_interpolation.py`)**
 
-## **Function: `pos_interp`**
+## **Función: `pos_interp`**
 
-### **Functionality**
-The `pos_interp` function performs **linear interpolation** of missing positions (latitude and longitude) in a dataset based on a **uniform time interval**.
-It fills missing values between consecutive records while considering **time constraints** (a maximum difference of **2 hours**) to determine whether to interpolate or keep the original values.
-The result is a **Spark DataFrame** containing interpolated positions, along with either **specified columns** or all columns if no subset is defined.
+### **Funcionalidad**
+La función `pos_interp` realiza **interpolación lineal** de posiciones faltantes (latitud y longitud) en un conjunto de datos, con base en un **intervalo de tiempo uniforme**.
+Rellena los valores faltantes entre registros consecutivos considerando una **restricción de tiempo** (máximo de **2 horas**) para determinar si se debe interpolar o conservar los valores originales.
+El resultado es un **DataFrame de Spark** que contiene las posiciones interpoladas, junto con las **columnas especificadas** o todas las columnas si no se define un subconjunto.
 
 ---
 
-## **Parameters**
+## **Parámetros**
 1. **`dfspark (Spark DataFrame)`**
-   - The input Spark DataFrame containing the data.
+   - DataFrame de entrada que contiene los datos.
 
 2. **`interval_minutes (int)`**
-   - The frequency (in minutes) for interpolation.
-   - Defines the time interval between interpolated points.
+   - Frecuencia (en minutos) para la interpolación.
+   - Define el intervalo de tiempo entre puntos interpolados.
 
-3. **`group (Optional[list of strings], default=None)`**
-   - Specifies the columns by which data should be grouped for interpolation.
-   - If no value is provided, the function **automatically groups by `imo`**.
+3. **`group (Opcional[listado de strings], default=None)`**
+   - Columnas por las que se agruparán los datos para realizar la interpolación.
+   - Si no se especifica, la función agrupa **automáticamente por `imo`**.
 
-4. **`columns (Optional[list of strings], default=["*"])`**
-   - Defines the columns to retain in the output DataFrame.
-   - If not specified, all columns from the input DataFrame are returned.
+4. **`columns (Opcional[listado de strings], default=["*"])`**
+   - Columnas que se desean conservar en el DataFrame de salida.
+   - Si no se indica, se devuelven **todas las columnas** del DataFrame original.
 
 ---
 
-## **Return Value**
+## **Valor de Retorno**
 - **`df_interpolated (Spark DataFrame)`**
-  A cleaned DataFrame containing interpolated data with the following characteristics:
-  - Interpolated **latitude and longitude** at uniform intervals defined by `interval_minutes`.
-  - Interpolation limited to a **maximum of 2 hours** between consecutive points.
-  - Retains only the **specified columns** or all original columns if no subset is defined.
+  DataFrame limpio con los datos interpolados, que incluye:
+  - **Latitud y longitud interpoladas** en intervalos definidos por `interval_minutes`.
+  - Interpolación limitada a un **máximo de 2 horas** entre puntos consecutivos.
+  - Conjunto de columnas limitado a las **especificadas** o incluye todas si no se definió ninguna.
 
 ---
 
-## **Internal Processing Flow**
+## **Flujo Interno de Procesamiento**
 
-### **1. Initial Setup**
-- Computes the **resampling frequency** (`resample_interval`) in seconds from `interval_minutes`.
-- If `columns` is not specified, all input DataFrame columns are considered.
-- Defines a **partitioning clause** for grouping, either by `imo, segr, flag` (if present) or the user-defined `group` columns.
+### **1. Configuración Inicial**
+- Calcula la **frecuencia de remuestreo** (`resample_interval`) en segundos a partir de `interval_minutes`.
+- Si no se especifican columnas, se consideran todas las del DataFrame original.
+- Se define una **cláusula de partición** para agrupar, ya sea por `imo, segr, flag` (si están presentes) o por las columnas indicadas en `group`.
 
-### **2. Time Limits Calculation**
-- Computes **start (`PreviousTimestampRoundUp`)** and **end (`NextTimestampRoundDown`)** timestamps for each segment based on the defined interval.
-- These limits are used to generate **uniform time sequences** within each group.
+### **2. Cálculo de Límites Temporales**
+- Calcula los **timestamps de inicio y fin** (`PreviousTimestampRoundUp` y `NextTimestampRoundDown`) para cada segmento en función del intervalo definido.
+- Estos límites se usan para generar **secuencias de tiempo uniformes** por grupo.
 
-### **3. Linear Interpolation**
-- Generates **evenly spaced interpolated points** within the calculated time limits.
-- For each interpolated point:
-  - **Latitude (`latitude`)**:
-    - Uses **linear interpolation** between previous (`latitude_lag`) and current (`latitude_old`) values if the time difference **is less than 2 hours**.
-    - If the difference **exceeds 2 hours**, keeps the **original `latitude_old`**.
-  - **Longitude (`longitude`)**:
-    - Follows the same process as latitude.
+### **3. Interpolación Lineal**
+- Genera puntos interpolados **equispaciados en el tiempo** dentro de los límites calculados.
+- Para cada punto interpolado:
+  - **Latitud (`latitude`)**:
+    - Se interpola linealmente entre los valores previos (`latitude_lag`) y actuales (`latitude_old`) si la diferencia de tiempo **es menor a 2 horas**.
+    - Si la diferencia **supera las 2 horas**, se conserva la **latitud original (`latitude_old`)**.
+  - **Longitud (`longitude`)**:
+    - Sigue el mismo procedimiento que la latitud.
 
-### **4. Frequency Resampling**
-- Aligns interpolated data at uniform intervals (`interval_minutes`).
-- Computes **time gaps (`freq`)** between consecutive points:
-  - If the time gap **exceeds 2 hours**, sets `freq = 0`.
+### **4. Remuestreo por Frecuencia**
+- Alinea los datos interpolados a intervalos uniformes (`interval_minutes`).
+- Calcula **brechas de tiempo (`freq`)** entre puntos consecutivos:
+  - Si la brecha supera las **2 horas**, se asigna `freq = 0`.
 
-### **5. Data Cleaning & Output**
-- Removes **temporary columns** used for internal calculations.
-- Returns the final **interpolated DataFrame**, ready for further analysis or processing.
-
----
-
-# `_spatial.py`
-
-## **Function: `wkt_load`**
-
-### **Functionality**
-The `wkt_load` function transforms spatial data from **Point (lat, lon) format** into **Well-Known Text (WKT) format** and creates a **Spark DataFrame** with **geometry objects**.
-This format is required for **spatial filtering** in **Apache Sedona**.
-However, **H3 hexagons** are often more efficient for many spatial applications.
+### **5. Limpieza y Salida de Datos**
+- Elimina **columnas temporales** usadas durante el procesamiento.
+- Devuelve el **DataFrame interpolado final**, listo para análisis o procesamiento posterior.
 
 ---
 
-## **Parameters**
+# **Módulo Espacial (`_spatial.py`)**
+
+## **Función: `wkt_load`**
+
+### **Funcionalidad**
+La función `wkt_load` transforma datos espaciales en formato **Point (latitud, longitud)** a formato **Well-Known Text (WKT)**, y genera un **DataFrame de Spark** con objetos geométricos.
+Este formato es necesario para realizar **filtros espaciales** con **Apache Sedona**.
+No obstante, en muchas aplicaciones espaciales, los **hexágonos H3** pueden ser más eficientes.
+
+---
+
+## **Parámetros**
 1. **`spark (SparkSession)`**
-   - The active **Spark session** required for running queries and managing the DataFrame.
+   - Sesión activa de Spark, necesaria para ejecutar consultas y gestionar el DataFrame.
 
 2. **`df (DataFrame)`**
-   - A **Spark DataFrame** containing tabular data with a **WKT field** that will be transformed into a geometry object.
+   - DataFrame de Spark que contiene datos tabulares con un campo **WKT** a transformar.
 
-3. **`wkt_field (str, optional, default='WKT_geom')`**
-   - The name of the column containing **WKT strings**.
-   - This column is used to create the **geometry column**.
+3. **`wkt_field (str, opcional, default='WKT_geom')`**
+   - Nombre de la columna que contiene cadenas WKT.
+   - Esta columna se usa para crear la columna de geometría.
 
-4. **`drop_wkt (bool, optional, default=True)`**
-   - Determines whether the original **WKT field** should be removed after creating the geometry object:
-     - **`True`**: Removes the original WKT field.
-     - **`False`**: Keeps the original WKT field in the resulting DataFrame.
+4. **`drop_wkt (bool, opcional, default=True)`**
+   - Define si se elimina la columna original WKT tras crear la geometría:
+     - **`True`**: Elimina el campo WKT.
+     - **`False`**: Conserva el campo WKT original en el DataFrame resultante.
 
 ---
 
-## **Return Value**
+## **Valor de Retorno**
 - **`geom_df (DataFrame)`**
-  - A **Spark DataFrame** with a new column `geom`, containing geometry objects created from the **WKT field**.
-  - If **`drop_wkt=True`**, the original WKT field is removed.
+  Un **DataFrame de Spark** con una nueva columna `geom`, que contiene los objetos geométricos creados a partir del campo WKT.
+  Si **`drop_wkt=True`**, el campo original WKT se elimina.
 
 ---
 
-## **Internal Processing Flow**
+## **Flujo Interno de Procesamiento**
 
-### **1. Create a Temporary View**
-- Registers the input DataFrame as a **temporary SQL view** (`x`), allowing **SQL queries** to be executed on it.
+### **1. Crear Vista Temporal**
+- Registra el DataFrame de entrada como una **vista SQL temporal** (`x`) para permitir consultas SQL sobre él.
 
-### **2. Convert WKT Field to Geometry**
-- Uses the **`ST_GeomFromWKT`** function from **Apache Sedona** to convert the **WKT field** (`wkt_field`) into a **geometry object**.
-- Stores the result in a **new column `geom`**.
+### **2. Conversión de Campo WKT a Geometría**
+- Utiliza la función **`ST_GeomFromWKT`** de **Apache Sedona** para transformar el campo WKT (`wkt_field`) en un **objeto de geometría**.
+- El resultado se almacena en una nueva columna `geom`.
 
-### **3. Geometry Type Validation**
-- Prints the **schema** of the resulting DataFrame and displays the **first record** to verify that geometry objects have been created correctly.
-- Helps detect errors in the **input data**, such as **malformed geometries**.
+### **3. Validación del Tipo de Geometría**
+- Imprime el **esquema del DataFrame resultante** y muestra el **primer registro** para verificar que se generaron correctamente los objetos geométricos.
+- Ayuda a detectar errores en los datos de entrada, como **geometrías mal formadas**.
 
-### **4. Return Processed DataFrame**
-- Returns the **processed Spark DataFrame**, including the newly created **geometry column (`geom`)**.
-
----
-
-# `_vessel_specs_ghg4`
-
-## Functions
-
-### **1. `find_folder_csv(folder_name, file name)`**
-**Functionality:**
-Finds csv file within instructed folder (within the pacakge) and loads a Pandas DF
-
-#### **Parameters:**
-- **`folder name (str)`**: The input text as folder name
-- **`file_name (str)`**: The input text as file name, including extension .csv.
-
-#### **Return Value:**
-- **`df (pd.DataFrame)`**: A dataframe with information stored at the package csv
+### **4. Devolver el DataFrame Procesado**
+- Devuelve el **DataFrame de Spark procesado**, incluyendo la nueva columna `geom`.
 
 ---
 
-### **2. `clean_string(text)`**
-**Functionality:**
-Removes punctuation marks from a text and converts it to lowercase.
+# **Módulo `_vessel_specs_ghg4`**
 
-#### **Parameters:**
-- **`text (str)`**: The input text.
+## **Funciones**
 
-#### **Return Value:**
-- **`str`**: The processed text, without punctuation and in lowercase.
+### **1. `find_folder_csv(folder_name, file_name)`**
 
----
+**Funcionalidad:**
+Busca un archivo `.csv` dentro de una carpeta especificada (dentro del paquete) y lo carga como un DataFrame de Pandas.
 
-### **3. `compare_similarity(text)`**
-**Functionality:**
-Compares the similarity between the input text and a list of standard vessel types. If the similarity is greater than **75%**, it returns the corresponding vessel type.
+#### **Parámetros:**
+- `folder_name (str)`: Nombre de la carpeta donde se encuentra el archivo.
+- `file_name (str)`: Nombre del archivo `.csv` a cargar (incluyendo la extensión).
 
-#### **Parameters:**
-- **`text (str)`**: The input text to compare.
-
-#### **Return Value:**
-- **`str`**: The matching vessel type, or `None` if no match is found.
-
----
-
-### **4. `bin_finder(vessel_t, value, df_in)`**
-**Functionality:**
-Classifies a vessel type into its respective **IMO bin** based on the ranges defined in the **IMO GHG4** report.
-
-#### **Parameters:**
-- **`vessel_t (str)`**: Vessel type.
-- **`value (float)`**: Reference value for classification.
-- **`df_in (pd.DataFrame)`**: Input DataFrame with classification ranges.
-
-#### **Return Value:**
-- **`int`**: IMO **bin number**, or `0` if no match is found.
-
----
-
-## Specific Assignments
-
-### **Cargo Units by Vessel Type**
-Defines the standard cargo unit according to the vessel type:
-- **Deadweight (DWT)** for bulk carriers, tankers, and general cargo vessels.
-- **TEU** for container ships.
-- **Gross Tonnage (GT)** for cruise ships, ferries, and other specialized vessels.
-
-### **Engine Types by Energy Source**
-Classifies vessels based on their **engine type and energy source**:
-- **Oil Engines → Diesel, HFO**
-- **Sails → Auxiliary wind energy**
-- **Gas Turbines → High-speed propulsion**
-- **Steam Turbines → Propulsion in specialized vessels**
-
----
-
-### **1. `check_json(url)`**
-**Functionality:**
-Downloads and decodes JSON data from a specified URL.
-
-#### **Parameters:**
-- **`url (str)`**: The URL where the JSON file is retrieved.
-
-#### **Return Value:**
-- **`json_str (str)`**: A string containing the downloaded and decoded JSON content.
+#### **Valor de Retorno:**
+- `df (pd.DataFrame)`: DataFrame con la información almacenada en el archivo CSV.
 
 ---
 
 ### **2. `clean_string(text)`**
-**Functionality:**
-Removes punctuation marks from a text and converts it to lowercase.
 
-#### **Parameters:**
-- **`text (str)`**: The input text.
+**Funcionalidad:**
+Elimina signos de puntuación de un texto y lo convierte a minúsculas.
 
-#### **Return Value:**
-- **`str`**: The cleaned text without punctuation and in lowercase.
+#### **Parámetros:**
+- `text (str)`: Texto de entrada.
+
+#### **Valor de Retorno:**
+- `str`: Texto procesado, sin puntuación y en minúsculas.
 
 ---
 
 ### **3. `compare_similarity(text)`**
-**Functionality:**
-Compares the similarity between the input text and a list of **standard vessel types**. If the similarity is higher than **75%**, it returns the corresponding vessel type.
 
-#### **Parameters:**
-- **`text (str)`**: The input text to compare.
+**Funcionalidad:**
+Compara la similitud entre el texto de entrada y una lista de tipos de buques estándar. Si la similitud es mayor al **75%**, devuelve el tipo correspondiente.
 
-#### **Return Value:**
-- **`str`**: The matching vessel type, or `None` if no match is found.
+#### **Parámetros:**
+- `text (str)`: Texto a comparar.
+
+#### **Valor de Retorno:**
+- `str`: Tipo de buque coincidente o `None` si no se encuentra coincidencia.
 
 ---
 
 ### **4. `bin_finder(vessel_t, value, df_in)`**
-**Functionality:**
-Classifies a vessel type into its respective **IMO bin** based on ranges defined in the **IMO GHG4 report**.
 
-#### **Parameters:**
-- **`vessel_t (str)`**: The vessel type.
-- **`value (float)`**: The reference value for classification.
-- **`df_in (pd.DataFrame)`**: The input DataFrame containing classification ranges.
+**Funcionalidad:**
+Clasifica un tipo de buque dentro de su **IMO bin** correspondiente, según los rangos definidos en el informe **IMO GHG4**.
 
-#### **Return Value:**
-- **`int`**: The **IMO bin number**, or `0` if no match is found.
+#### **Parámetros:**
+- `vessel_t (str)`: Tipo de buque.
+- `value (float)`: Valor de referencia para la clasificación (por ejemplo, DWT, GT, TEU).
+- `df_in (pd.DataFrame)`: DataFrame con los rangos de clasificación.
 
----
-
-### **5. Specific Assignments**
-
-#### **Cargo Measurement Units per Vessel Type**
-Defines the **standard cargo measurement unit** based on vessel type:
-- **Deadweight (DWT)** for bulk carriers, tankers, and general cargo vessels.
-- **TEU** for container ships.
-- **Gross Tonnage (GT)** for cruise ships, ferries, and specialized vessels.
-
-#### **Engine Type Allocation**
-Classifies vessels by **engine type and energy source**:
-- **Oil Engines → Diesel, HFO**
-- **Sail → Wind-powered auxiliary propulsion**
-- **Gas Turbines → High-speed propulsion**
-- **Steam Turbines → Specialized vessel propulsion**
-
-
-## **Function: `adapted_specs_imo`**
-
-### **Functionality**
-The `adapted_specs_imo` function adjusts vessel specifications according to the **IMO GHG4 report methods**.
-If a vessel type is missing in the **Lloyd’s Fleet Register**, the function applies **cosine similarity** to find the closest match from a predefined list.
-The result is a **Pandas DataFrame** with vessel specifications structured according to IMO GHG4 standards.
+#### **Valor de Retorno:**
+- `int`: Número de bin IMO correspondiente, o `0` si no hay coincidencia.
 
 ---
 
-## **Parameters**
-1. **`df_unique_imo (Pandas DataFrame)`**
-   - Input DataFrame containing unique AIS records merged with **IHS Markit** vessel specifications.
+## **Asignaciones Específicas**
+
+### **Unidades de Carga por Tipo de Buque**
+Define la unidad de carga estándar según el tipo de buque:
+- **Deadweight (DWT)** para graneleros, tanqueros y buques de carga general.
+- **TEU** para buques portacontenedores.
+- **Gross Tonnage (GT)** para cruceros, ferries y otros buques especializados.
+
+### **Tipos de Motor según Fuente de Energía**
+Clasifica los buques según su **tipo de motor y fuente de energía**:
+- **Motores a petróleo → Diesel, HFO**
+- **Velas → Energía eólica auxiliar**
+- **Turbinas de gas → Propulsión de alta velocidad**
+- **Turbinas de vapor → Propulsión en buques especializados**
 
 ---
 
-## **Return Value**
-- **`ind (Pandas DataFrame)`**
-  A DataFrame with **AIS vessel specifications**, adjusted to IMO GHG4 methods, including the following additional columns:
-  - **`imobin`**: IMO bin classification based on **IMO GHG4 recognized bins**.
-  - **`fuel`**: Assigned fuel type for the vessel.
-  - **`meType`**: Assigned main engine type.
+### **5. `check_json(url)`**
+
+**Funcionalidad:**
+Descarga y decodifica contenido JSON desde una URL especificada.
+
+#### **Parámetros:**
+- `url (str)`: URL desde la cual se obtiene el archivo JSON.
+
+#### **Valor de Retorno:**
+- `json_str (str)`: Cadena con el contenido JSON descargado y decodificado.
 
 ---
 
-## **Internal Processing Flow**
+## **Función: `adapted_specs_imo`**
 
-### **1. Initial Preparation**
-- Renames columns for consistency (`vessel_type_main` → `ais_type`, etc.).
-- Fills missing values in **`ShiptypeLevel5`** using AIS records.
-
-### **2. Vessel Type Assignment**
-- If **ShiptypeLevel5** does not match the standard vessel type list, **cosine similarity** is applied to find the closest match.
-- Any vessel without a recognized **standard vessel type** is removed.
-
-### **3. IMO Bin Classification**
-- Merges the data with the **standard vessel type table**.
-- Computes the **IMO bin** based on the vessel’s carrying capacity (**Deadweight, Gross Tonnage, TEU**).
-
-### **4. Fuel Type Assignment**
-- Determines the **fuel type** based on **propulsion type and IMO GHG4 category**.
-- If the fuel type is unknown, assigns a default value based on the engine type (`HFO`, `MDO`, `LNG`, etc.).
-
-### **5. Engine Type Assignment**
-- Classifies the **engine type** based on its **propulsion and revolutions per minute (RPM)**.
-- Assigns categories like **SSD (Slow Speed Diesel), MSD (Medium Speed Diesel), HSD (High Speed Diesel), Steam Turbine, Gas Turbine, Sail, Non-Propelled**, etc.
-
-### **6. Final Validations and Return**
-- Removes **intermediate processing columns**.
-- Returns the **processed DataFrame**.
+### **Funcionalidad:**
+La función `adapted_specs_imo` ajusta las especificaciones de buques según los métodos del informe **IMO GHG4**.
+Si un tipo de buque no está presente en el **Lloyd’s Fleet Register**, la función aplica **similitud coseno** para encontrar la mejor coincidencia desde una lista predefinida.
+El resultado es un **DataFrame de Pandas** con especificaciones de buques estructuradas conforme a los estándares del IMO GHG4.
 
 ---
 
+## **Parámetros**
+1. `df_unique_imo (pd.DataFrame)`
+   - DataFrame de entrada con registros AIS únicos combinados con especificaciones de buques provenientes de **IHS Markit**.
+
+---
+
+## **Valor de Retorno**
+- `ind (pd.DataFrame)`
+  Un DataFrame con las especificaciones de los buques AIS, ajustadas a los métodos del IMO GHG4, incluyendo las siguientes columnas adicionales:
+  - `imobin`: Clasificación IMO bin según los bins reconocidos en el GHG4.
+  - `fuel`: Tipo de combustible asignado al buque.
+  - `meType`: Tipo de motor principal asignado.
+
+---
+
+## **Flujo Interno de Procesamiento**
+
+### **1. Preparación Inicial**
+- Renombra columnas para mantener consistencia (`vessel_type_main` → `ais_type`, etc.).
+- Rellena valores faltantes en **`ShiptypeLevel5`** utilizando información de registros AIS.
+
+### **2. Asignación del Tipo de Buque**
+- Si **ShiptypeLevel5** no coincide con la lista estándar de tipos de buques, se aplica **similitud coseno** para encontrar la coincidencia más cercana.
+- Se eliminan los buques que no logran una coincidencia válida.
+
+### **3. Clasificación IMO Bin**
+- Se fusionan los datos con la tabla estándar de tipos de buques.
+- Se calcula el bin IMO con base en la capacidad de carga del buque (**DWT, GT, TEU**).
+
+### **4. Asignación del Tipo de Combustible**
+- Determina el **tipo de combustible** según la **propulsión** y categoría del GHG4.
+- Si el tipo es desconocido, asigna un valor por defecto según el motor (`HFO`, `MDO`, `LNG`, etc.).
+
+### **5. Asignación del Tipo de Motor**
+- Clasifica el **tipo de motor** según su sistema de propulsión y revoluciones por minuto (RPM).
+- Asigna categorías como:
+  - **SSD (Slow Speed Diesel)**
+  - **MSD (Medium Speed Diesel)**
+  - **HSD (High Speed Diesel)**
+  - **Turbina de Vapor**
+  - **Turbina de Gas**
+  - **Velas**
+  - **No Propulsado**, etc.
+
+### **6. Validaciones Finales y Retorno**
+- Elimina **columnas intermedias** usadas en el procesamiento.
+- Devuelve el **DataFrame final** procesado y listo para uso.
+
+---
