@@ -1,0 +1,9 @@
+percent,fuel,eca_fuel
+1.0,HFO,LSHFO_1%
+1.0,MDO,MDO
+1.0,LNG,LNG
+1.0,Methanol,Methanol
+0.1,HFO,MDO
+0.1,MDO,MDO
+0.1,LNG,LNG
+0.1,Methanol,Methanol

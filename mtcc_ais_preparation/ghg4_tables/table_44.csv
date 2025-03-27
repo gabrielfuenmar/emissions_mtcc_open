@@ -1,0 +1,71 @@
+StandardVesselType,imobin,weather,fouling
+Bulk carrier,1,0.909,0.917
+Bulk carrier,2,0.867,0.917
+Bulk carrier,3,0.867,0.917
+Bulk carrier,4,0.867,0.917
+Bulk carrier,5,0.867,0.917
+Bulk carrier,6,0.867,0.917
+Chemical tanker,1,0.909,0.917
+Chemical tanker,2,0.909,0.917
+Chemical tanker,3,0.867,0.917
+Chemical tanker,4,0.867,0.917
+Chemical tanker,5,0.867,0.917
+Container,1,0.909,0.917
+Container,2,0.867,0.917
+Container,3,0.867,0.917
+Container,4,0.867,0.917
+Container,5,0.867,0.917
+Container,6,0.867,0.917
+Container,7,0.867,0.917
+Container,8,0.867,0.917
+Container,9,0.867,0.917
+General cargo,1,0.909,0.917
+General cargo,2,0.909,0.917
+General cargo,3,0.867,0.917
+General cargo,4,0.867,0.917
+Liquified gas tanker,1,0.867,0.917
+Liquified gas tanker,2,0.867,0.917
+Liquified gas tanker,3,0.867,0.917
+Liquified gas tanker,4,0.867,0.917
+Oil tanker,1,0.909,0.917
+Oil tanker,2,0.909,0.917
+Oil tanker,3,0.867,0.917
+Oil tanker,4,0.867,0.917
+Oil tanker,5,0.867,0.917
+Oil tanker,6,0.867,0.917
+Oil tanker,7,0.867,0.917
+Oil tanker,8,0.867,0.917
+Other liquids tankers,1,0.867,0.917
+Other liquids tankers,2,0.867,0.917
+Ferry-pax only,1,0.909,0.917
+Ferry-pax only,2,0.909,0.917
+Ferry-pax only,3,0.909,0.917
+Ferry-pax only,4,0.909,0.917
+Cruise,1,0.909,0.917
+Cruise,2,0.867,0.917
+Cruise,3,0.867,0.917
+Cruise,4,0.867,0.917
+Cruise,5,0.867,0.917
+Cruise,6,0.867,0.917
+Ferry-RoPax,1,0.909,0.917
+Ferry-RoPax,2,0.909,0.917
+Ferry-RoPax,3,0.909,0.917
+Ferry-RoPax,4,0.909,0.917
+Ferry-RoPax,5,0.909,0.917
+Refrigerated bulk,1,0.867,0.917
+Refrigerated bulk,2,0.867,0.917
+Refrigerated bulk,3,0.867,0.917
+Refrigerated bulk,4,0.867,0.917
+Ro-Ro,1,0.909,0.917
+Ro-Ro,2,0.867,0.917
+Ro-Ro,3,0.867,0.917
+Ro-Ro,4,0.867,0.917
+Vehicle,1,0.867,0.917
+Vehicle,2,0.867,0.917
+Vehicle,3,0.867,0.917
+Yacht,1,0.867,0.917
+Service-tug,1,0.909,0.917
+Miscellaneous-fishing,1,0.909,0.917
+Offshore,1,0.909,0.917
+Service-other,1,0.909,0.917
+Miscellaneous-other,1,0.909,0.917
